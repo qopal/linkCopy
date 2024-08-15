@@ -1,11 +1,11 @@
 chrome.commands.onCommand.addListener((command) => {
-if (command === "copy-mdlink") {
+  if (command === "copy-mdlink") {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tab = tabs[0];
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: () => {
-          const href = decodeURIComponent(location.href).replace(/ /g, '%20');
+          const href = location.href
           const title = prompt('Enter link title', document.title);
           if (title !== null) {
             const textLink = `[${title}](${href})`;
@@ -26,6 +26,23 @@ if (command === "copy-mdlink") {
           navigator.clipboard.writeText(textLink).then(() => {
             alert('Link copied to clipboard: ' + textLink);
           });
+        }
+      });
+    });
+  }
+  if (command === "copy-titleAndLink") {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const tab = tabs[0];
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: () => {
+          const href = location.href
+          const title = prompt('Enter link title', document.title);
+          if (title !== null) {
+            const textLink = `${title}` + `\n` + `${href}`;
+            navigator.clipboard.writeText(textLink).then(() => {
+            });
+          }
         }
       });
     });

@@ -1,9 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Link Copy",
-  "version": "1.1",
+  "version": "1.2",
   "description": "markdown形式や日本語形式のリンクをコピーします。",
-  "permissions": ["activeTab", "clipboardWrite", "scripting"],
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "scripting"
+  ],
   "background": {
     "service_worker": "background.js"
   },
@@ -19,6 +23,12 @@
         "default": "Alt+C"
       },
       "description": "日本語形式のリンクをコピーします。"
+    },
+    "copy-titleAndLink": {
+      "suggested_key": {
+        "default": "Alt+T"
+      },
+      "description": "ページタイトルとリンクをコピーします。"
     }
   }
 }
