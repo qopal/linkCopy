@@ -8,7 +8,11 @@ chrome.commands.onCommand.addListener((command) => {
           const href = location.href
           const title = prompt('Enter link title', document.title);
           if (title !== null) {
-            const textLink = `[${title}](${href})`;
+            let textLink = `[${title}](${href})`;
+            const favicon = document.querySelector('link[rel="icon"]') || document.querySelector('link[rel="shortcut icon"]');
+            if (favicon) {
+              textLink = `<img src="${favicon.href}" width="16" height="16" /> ${textLink}`;
+            }
             navigator.clipboard.writeText(textLink).then(() => {
             });
           }
