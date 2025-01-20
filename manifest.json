@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Link Copy",
-  "version": "1.2",
+  "version": "1.3",
   "description": "markdown形式や日本語形式のリンクをコピーします。",
   "permissions": [
     "activeTab",
@@ -17,6 +17,12 @@
         "default": "Alt+M"
       },
       "description": "markdown形式のリンクをコピーします。"
+    },
+    "copy-rdmlink": {
+      "suggested_key": {
+        "default": "Alt+R"
+      },
+      "description": "textile（redmine）形式のリンクをコピーします。"
     },
     "copy-jalink": {
       "suggested_key": {

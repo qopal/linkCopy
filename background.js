@@ -16,6 +16,23 @@ chrome.commands.onCommand.addListener((command) => {
       });
     });
   }
+  if (command === "copy-rdmlink") {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const tab = tabs[0];
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: () => {
+          const href = location.href
+          const title = prompt('Enter link title', document.title);
+          if (title !== null) {
+            const textLink = `"${title}":${href} `;
+            navigator.clipboard.writeText(textLink).then(() => {
+            });
+          }
+        }
+      });
+    });
+  }
   if (command === "copy-jalink") {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tab = tabs[0];
